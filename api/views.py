@@ -1,8 +1,10 @@
-from flask import Flask
+from flask import Flask, request, jsonify
+from views import *
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET'])
-def index():
-    """Index route"""
-    return ("Hello")
+@app.route('/game')
+def newgame():
+    board = request.args.get('board')
+    return board
+    
