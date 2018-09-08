@@ -54,3 +54,24 @@ class TicTacToeTestCase(unittest.TestCase):
         response = self.client.get('/game', query_string="board= xxo  o  ")
         self.assertEqual(response.status_code, 200)
         self.assertIn('oxxo  o  ', response.data.decode())
+
+    #testing for optimization
+    def test_score_winning_and_losing_base_cases(self):
+        self.assertEqual(tic.score('xxx      ', player='x'), 1)
+        self.assertEqual(tic.score('xxx      ', player='o'), -1)
+
+        self.assertEqual(tic.score('o  o  o  ', player='o'), 1)
+        self.assertEqual(tic.score('o  o  o  ', player='x'), -1)
+        self.assertEqual(tic.score('x  x  x  ', player='x'), 1)
+        self.assertEqual(tic.score('x  x  x  ', player='o'), -1)
+
+    def test_score_tie_base_cases(self):
+        self.assertEqual(tic.score('xoooxxoxo', player='x'), 0)
+        self.assertEqual(tic.score('xoooxxoxo', player='o'), 0)
+
+    def test_score_easy_board_can_win(self):
+        self.assertEqual(tic.score('oo xx    ', player='o'), 1)
+        self.assertEqual(tic.score('oo xx    ', player='x'), 1)
+
+if __name__ == "__main__":
+    unittest.main()
