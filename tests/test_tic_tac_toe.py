@@ -53,4 +53,4 @@ class TicTacToeTestCase(unittest.TestCase):
         """Should return 200 for valid board string"""
         response = self.client.get('/game', query_string="board= xxo  o  ")
         self.assertEqual(response.status_code, 200)
-        self.assertIn('oxxo  o  ', response.get_data(), )
+        self.assertIn('oxxo  o  ', response.data.decode())
