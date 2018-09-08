@@ -4,3 +4,5 @@ omit =
     */env/*
     */migrations/*
     */decimal.py
+include = ./api/*
+
