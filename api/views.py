@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, abort
-from models import TicTacToe
+from api.models import TicTacToe
  
 
 app = Flask(__name__)
