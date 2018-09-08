@@ -2,7 +2,6 @@
 omit =
     */site-packages/*
     */env/*
-    */migrations/*
     */decimal.py
 include = ./api/*
 
