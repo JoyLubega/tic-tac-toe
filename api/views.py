@@ -1,27 +1,39 @@
 from flask import Flask, request, jsonify, abort
 from models import TicTacToe
+ 
 
 app = Flask(__name__)
 
 tic= TicTacToe()
+
+    
 @app.route('/game')
 def newgame():
+    """
+    Get request to return the next board
+    """
     board = request.args.get('board')
+              
     if board is None:
-        return jsonify({'error':'enter the board please'})
-    if tic.is_board_valid(board)== False:
-        return jsonify({'error':'The board is invalid'})
-    possible_boards = tic.expected_boards(board, 'o') # all plays
-    winning_board=max(possible_boards, key=lambda candidate: -1 * tic.score(candidate, 'x'))
-    return jsonify({"next_board":winning_board})
-    
-    # return tic.expected_boards(board, player='o')[0]
-    
-    
-    # if tic.is_board_valid(board=board) == False:
-    #     return jsonify({'error':'The board is invalid'})
+        return jsonify({'error':'enter the board please'}) ,400
+    if (board == ''):
+        return jsonify({'error':'Board can not be empty'}) ,400
+    if tic.is_winner(board,'o') == True:
+        return jsonify({'Message':'O worn the Game'}) ,400
 
-    # or not tic.is_board_valid(board):
-    #    abort(400)
-    # return board
+    if tic.is_board_valid(board)== False:
+        
+        return jsonify({'error':'The board is invalid'}), 400
+
+    if tic.is_tie(board) == True  :
+        return jsonify({'Message':'The board is a tie'}), 400
+    if tic.is_winner(board,'o'):
+        return jsonify({'Message':'Player O is the winner'}), 400
+
     
+    possible_boards = tic.expected_boards(board, 'o') # all boards of the given player (o)
+    winning_board=max(possible_boards, key=lambda candidate: -1 * tic.score(candidate, 'o'))
+    
+    return jsonify({
+                "next_board":winning_board
+                                    })

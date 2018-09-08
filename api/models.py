@@ -27,7 +27,10 @@ class TicTacToe(object):
         """ 
         Checks if the result of the game is a tie
         """
-        return not (" " in board)
+        if ' ' in board:
+            return False 
+        else:
+            return True
     
     def is_winner(self,board, player):
         """ 
@@ -60,7 +63,7 @@ class TicTacToe(object):
     
     def expected_boards(self,board, player):
         """ 
-        Returns a list of all boards that are expected from player's next move. 
+        Returns a list of  boards that are expected from player's next move. 
         """
         return [self.move(board, i, player) for i, char in enumerate(board) if char == " "]
     
