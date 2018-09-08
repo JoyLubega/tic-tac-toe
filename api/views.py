@@ -19,7 +19,7 @@ def newgame():
     if (board == ''):
         return jsonify({'error':'Board can not be empty'}) ,400
     if tic.is_winner(board,'o') == True:
-        return jsonify({'Message':'O worn the Game'}) ,400
+        return jsonify({'Message':'The board provide is a tie'}) ,400
 
     if tic.is_board_valid(board)== False:
         
