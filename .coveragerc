@@ -1,0 +1,6 @@
+[report]
+omit =
+    */site-packages/*
+    */env/*
+    */migrations/*
+    */decimal.py
