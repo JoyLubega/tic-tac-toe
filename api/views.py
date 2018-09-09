@@ -1,13 +1,18 @@
 from flask import Flask, request, jsonify, abort
+from flask_optimize import FlaskOptimize
 from api.models import TicTacToe
  
 
 app = Flask(__name__)
+flask_optimize = FlaskOptimize()
+
+
 
 tic= TicTacToe()
 
     
 @app.route('/game')
+# @flask_optimize.optimize()
 def newgame():
     """
     Get request to return the next board

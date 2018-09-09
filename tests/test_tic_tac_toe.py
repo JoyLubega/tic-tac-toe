@@ -2,8 +2,6 @@ import unittest
 from api .views import app, tic
 
 
-
-
 class TicTacToeTestCase(unittest.TestCase):
     """
     Tests for the Tictactoe end points
