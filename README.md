@@ -48,7 +48,7 @@ You can now run the api using:
 `python run.py`
 
     
-## Running the testsz
+## Running the tests
 
 Easy, just: `nosetests --with-coverage`
 
