@@ -11,8 +11,9 @@ class TicTacToeTestCase(unittest.TestCase):
         self.client = app.test_client()
 
     def test_make_request_with_no_board_provided(self):
-        """Should return 400 for missing board"""
-        response = self.client.get('/game', query_string="noboard=uuuuuu")
+        """Should return 400 for missing board parameter"""
+        response = self.client.get('/game')
+        print(response)
         self.assertEqual(response.status_code, 400)
         self.assertIn('enter the board please',response.data.decode())
 
@@ -20,24 +21,17 @@ class TicTacToeTestCase(unittest.TestCase):
         """Should return 400 when the board provided is a tie"""
         response = self.client.get('/game', query_string="board=xxxoooxox")
         self.assertEqual(response.status_code, 400)
-        self.assertIn('The board provide is a tie', response.data.decode())
+        self.assertIn('The board is a tie', response.data.decode())
 
     def test_invalid_board(self):
         """Should return 400 for an invalid board"""
         response = self.client.get('/game', query_string="board= 45xxoooxox")
         self.assertEqual(response.status_code, 400)
         self.assertIn('The board is invalid',response.data.decode())
-
-    def test_empty_board(self):
-        """Should return 400 for empty board string"""
-        response = self.client.get('/game', query_string="board=")
-        self.assertEqual(response.status_code, 400)
-        self.assertIn('Board can not be empty',response.data.decode())
     
     def test_not_plausibly_os_turn(self):
         """Should return 400 for if it was os turn to play"""
         r = self.client.get('/game', query_string="board=xxx      ")
-        print(r.data.decode())
         self.assertEqual(r.status_code, 400)
 
     def test_winning_board(self):

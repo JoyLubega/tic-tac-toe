@@ -12,7 +12,7 @@ class TicTacToe(object):
         Check if both whether the board is a valid representation
         of a tictacoe board, and whether it could be o's turn.
         """
-        valid = re.match(r'^[o x]{9}$', board) and (board.count("x") - board.count("o") in [0, 1]) # noqa E501
+        valid = re.match(r'^[o x]{9}$', board)  and ((board.count("x") - board.count("o") in [0, 1]) or (board.count("o") - board.count("x") in [0, 1]))   # noqa E501
         if valid is True:
             return valid
         else:
@@ -67,6 +67,7 @@ class TicTacToe(object):
         """
         Returns a list of  boards that are expected from player's next move.
         """
+
         return [self.move(board, i, player) for i, char in enumerate(board) if char == " "] # noqa E501
 
     def score(self, board, player):
@@ -82,3 +83,6 @@ class TicTacToe(object):
             return 0
 
         return max(-1 * self.score(candidate, opp) for candidate in self.expected_boards(board, player)) # noqa E501
+
+
+    
