@@ -36,7 +36,7 @@ def newgame():
     # print(determine(board=board, player='o'))
     if board.count('o') - board.count('x') == 1 :
         next_player= 'x'
-    if (board.count('x') - board.count('o') == 1) or (board.count('x') - board.count('o') == 0)  :
+    if (board.count('x') - board.count('o') == 1) or (board.count('x') - board.count('o') == 0):
         next_player= 'o'
 
     possible_boards = tic.expected_boards(board, next_player) # all boards of the given player # noqa E501

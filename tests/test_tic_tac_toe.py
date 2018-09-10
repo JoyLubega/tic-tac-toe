@@ -25,7 +25,7 @@ class TicTacToeTestCase(unittest.TestCase):
 
     def test_invalid_board(self):
         """Should return 400 for an invalid board"""
-        response = self.client.get('/game', query_string="board= 45xxoooxox")
+        response = self.client.get('/game', query_string="board=oooooooooo")
         self.assertEqual(response.status_code, 400)
         self.assertIn('The board is invalid',response.data.decode())
     

@@ -12,7 +12,7 @@ class TicTacToe(object):
         Check if both whether the board is a valid representation
         of a tictacoe board, and whether it could be o's turn.
         """
-        valid = re.match(r'^[o x]{9}$', board)  and (board.count("x") - board.count("o") in [0, 1]) # noqa E501
+        valid = re.match(r'^[o x]{9}$', board)  and (board.count("x") - board.count("o") in [0, 1]) or (board.count("o") - board.count("x") in [0, 1]) # noqa E501
         if valid is True:
             return valid
         else:
