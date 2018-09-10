@@ -40,10 +40,8 @@ def newgame():
         next_player= 'o'
 
     possible_boards = tic.expected_boards(board, next_player) # all boards of the given player # noqa E501
-    winning_board=max(possible_boards, key = lambda candidate: -1 * tic.score(candidate, next_player)) # noqa E501
-
     return jsonify({
-                "next_board": winning_board
+                "next_board": possible_boards[0]
                                     })
 
    
