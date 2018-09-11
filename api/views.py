@@ -34,7 +34,7 @@ def newgame():
         return jsonify({'Message': 'The board is a tie'}), 400
     if tic.is_winner(board, 'o'):
         return jsonify({'Message': 'Player O is the winner'}), 400
-    # print(determine(board=board, player='o'))
+    
     if board.count('o') - board.count('x') == 1 :
         next_player= 'x'
     if (board.count('x') - board.count('o') == 1) or (board.count('x') - board.count('o') == 0):
@@ -43,9 +43,7 @@ def newgame():
     if next_player == 'o':
         the_move = tic.getmove_server(board,'o')
         new = board.encode("utf-8")
-        print(board)
-        print(new)
-        
+ 
         sep_list = list(new)
         sep_list[the_move]='o'
         print(sep_list)

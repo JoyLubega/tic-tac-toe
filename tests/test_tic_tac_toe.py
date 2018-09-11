@@ -13,7 +13,6 @@ class TicTacToeTestCase(unittest.TestCase):
     def test_make_request_with_no_board_provided(self):
         """Should return 400 for missing board parameter"""
         response = self.client.get('/game')
-        print(response)
         self.assertEqual(response.status_code, 400)
         self.assertIn('enter the board please',response.data.decode())
 
