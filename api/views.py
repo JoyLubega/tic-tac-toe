@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from api.tictactoe import TicTacToe
 import random
+import unicodedata
 
 
 
@@ -39,8 +40,20 @@ def newgame():
     if (board.count('x') - board.count('o') == 1) or (board.count('x') - board.count('o') == 0):
         next_player= 'o'
 
-    possible_boards = tic.expected_boards(board, next_player) # all boards of the given player # noqa E501
-    return jsonify({
+    if next_player == 'o':
+        the_move = tic.getmove_server(board,'o')
+        new = unicodedata.normalize('NFKD', board).encode('ascii','ignore')
+        sep_list = list(new)
+        sep_list[the_move]='o'
+        next_board = "".join(sep_list)
+        
+        return jsonify({
+                "next_board": next_board
+                                    })
+
+    if next_player == 'x': 
+        possible_boards  = tic.expected_boards(board, next_player) # all boards of the given player # noqa E501
+        return jsonify({
                 "next_board": possible_boards[0]
                                     })
 
