@@ -49,7 +49,7 @@ def newgame():
         sep_list = list(new)
         sep_list[the_move]='o'
         print(sep_list)
-        next_board = "".join(map(str,sep_list))
+        next_board = "".join(sep_list)
         return jsonify({
                 "next_board": next_board
                                     })
