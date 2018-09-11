@@ -42,7 +42,7 @@ def newgame():
 
     if next_player == 'o':
         the_move = tic.getmove_server(board,'o')
-        new = board.encode("utf-8")
+        new = board
  
         sep_list = list(new)
         sep_list[the_move]='o'
