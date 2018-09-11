@@ -1,0 +1,15 @@
+language: python
+#version
+python:
+  - "3.6"
+cache: pip
+
+install:
+  - pip install -r requirements.txt
+  - pip install coveralls
+  - pip install coverage
+script:
+  - nosetests --with-coverage --cover-package=api
+
+after_success:
+  - coveralls

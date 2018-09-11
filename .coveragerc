@@ -1,0 +1,7 @@
+[report]
+omit =
+    */site-packages/*
+    */env/*
+    */decimal.py
+include = ./api/*
+
