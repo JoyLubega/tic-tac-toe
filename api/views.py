@@ -45,8 +45,8 @@ def newgame():
         new = unicodedata.normalize('NFKD', board).encode('ascii','ignore')
         sep_list = list(new)
         sep_list[the_move]='o'
-
-        next_board = ''.join(str(v) for v in sep_list)
+        print(sep_list)
+        next_board = "".join(sep_list)
         return jsonify({
                 "next_board": next_board
                                     })
