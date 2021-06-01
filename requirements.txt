@@ -37,7 +37,7 @@ scandir==1.9.0
 singledispatch==3.4.0.3
 six==1.11.0
 tictactoe-py==1.0.0
-urllib3==1.23
+urllib3==1.26.5
 Werkzeug==0.14.1
 wrapt==1.10.11
 gunicorn==19.9.0
